@@ -3,7 +3,7 @@
     <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
       <mat-icon class="large-icon">home</mat-icon>
     </button>
-    <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+    <button mat-icon-button color="primary" routerLink="record" aria-label="Example icon button with a home icon">
       <mat-icon class="large-icon">calendar_month</mat-icon>
     </button>
     <button mat-icon-button color="primary" (click)='logout()' aria-label="Example icon button with a home icon"
@@ -14,6 +14,5 @@
 
   <div class="panel-right">
     <router-outlet></router-outlet>
-    <app-yandex-map></app-yandex-map>
   </div>
 </div>

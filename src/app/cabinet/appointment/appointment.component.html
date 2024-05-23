@@ -1,0 +1,15 @@
+<mat-stepper [linear]="isLinear" #stepper>
+    <mat-step label="Выбор поликлиники">
+        <button mat-button matStepperNext>Вперед</button>
+    </mat-step>
+    <mat-step label="Выбор врача">
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Вперед</button>
+    </mat-step>
+    <mat-step label="Выбор даты и время записи">
+        <div>
+            <button mat-button matStepperPrevious>Отменить запись</button>
+            <button mat-button (click)="stepper.reset()">Записаться</button>
+        </div>
+    </mat-step>
+</mat-stepper>
