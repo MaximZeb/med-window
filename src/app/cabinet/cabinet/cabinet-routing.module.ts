@@ -4,10 +4,13 @@ import { CabinetComponent } from "./cabinet.component";
 import { AppointmentComponent } from '../appointment/appointment.component';
 
 const routes: Routes = [
-  { path: '', component: CabinetComponent },
-  {
-    path: 'cabinet/record', component: AppointmentComponent
-  }
+  { path: '', component: CabinetComponent,
+    children: [
+      {
+        path: 'record', component: AppointmentComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({

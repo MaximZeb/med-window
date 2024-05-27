@@ -7,6 +7,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { YandexMapComponent } from '../yandex-map/yandex-map.component';
 import { AppointmentComponent } from '../appointment/appointment.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     CabinetRoutingModule,
     MatButtonModule,
     MatIconModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule
   ]
 })
 export class CabinetModule { }

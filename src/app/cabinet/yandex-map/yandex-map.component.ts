@@ -21,7 +21,7 @@ export class YandexMapComponent implements OnInit, AfterViewInit {
     ymaps.ready().then(() => {
       const map = new ymaps.Map('map', {
         center: [58.0096, 56.2294], // Начальные координаты (Перми)
-        zoom: 30
+        zoom: 10 // Уменьшенное значение зума
       });
 
       const points = [
@@ -38,14 +38,20 @@ export class YandexMapComponent implements OnInit, AfterViewInit {
       // Добавляем все метки на карту
       geoObjects.forEach(placemark => map.geoObjects.add(placemark));
 
-      // Определяем границы, которые включают все точки
+      // Устанавливаем границы и зум вручную после добавления меток
       const bounds = map.geoObjects.getBounds();
       if (bounds) {
         map.setBounds(bounds, {
           checkZoomRange: true,
           zoomMargin: 20
+        }).then(() => {
+          // Дополнительно вручную задаем зум, если нужно
+          map.setZoom(map.getZoom() - 7, { // Уменьшаем зум на единицу, если необходимо
+            checkZoomRange: true
+          });
         });
       }
     });
   }
+
 }
