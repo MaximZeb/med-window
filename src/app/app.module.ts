@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from "./AppRoutingModule.module";
 import { CabinetModule } from "./cabinet/cabinet/cabinet.module";
 import { LoginFormComponent } from './login-form/login-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MatIconModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    CabinetModule
+    CabinetModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
