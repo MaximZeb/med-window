@@ -1,1 +1,12 @@
 <p>duty-doctor-and-curent-records works!</p>
+<div class="container-duty" *ngIf="records$$ | async">
+    <mat-card class="container-duty_records">
+        <mat-card-header>Теккушие записи</mat-card-header>
+        <mat-card-content>Simple card</mat-card-content>
+    </mat-card>
+
+    <mat-card class="container-duty_duty">
+        <mat-card-header>Дежрный врач</mat-card-header>
+        <mat-card-content>Дежрный врач</mat-card-content>
+    </mat-card>
+</div>

@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { LoginService } from './login.service';
-import { EventBusService } from '../event-bus/event-bus.service';
 import { ProgressBarService } from '../progress-bar/progress-bar.service';
-import { tap } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 
 export interface LoginFormData {
   login: string;
@@ -30,11 +29,11 @@ export class LoginFormComponent {
 
       this.progressBarService.stateProgreeBar.next(true);
       this.loginService.login(loginData).pipe(
-        tap(() => this.progressBarService.stateProgreeBar.next(false))
+        tap(() => this.progressBarService.stateProgreeBar.next(false)),
+        take(1)
       ).subscribe(v => {
         this.route.navigate(['cabinet']);
-        console.log(v)
-      })
+      });
     } else {
       console.log('Form is invalid');
     }

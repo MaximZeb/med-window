@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiBackendService } from '../api/api-backend.service';
-import { Observable } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { EventBusService } from '../event-bus/event-bus.service';
 
 @Injectable({
@@ -13,8 +13,6 @@ export class LoginService {
     const json: string = JSON.stringify(date);
     const url: string = 'https://xxline.life/login';
 
-    this.eventBusService.patient$$.next(this.apiBackendService.post(url, json).subscribe())
-
-    return this.apiBackendService.post(url, json);
+    return this.apiBackendService.post(url, json).pipe(take(1), tap(v => console.log(v)), tap(v => this.eventBusService.patient$$.next(v)));
   }
 }

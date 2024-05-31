@@ -15,6 +15,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { EventBusService } from './event-bus/event-bus.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     HttpClientModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [EventBusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

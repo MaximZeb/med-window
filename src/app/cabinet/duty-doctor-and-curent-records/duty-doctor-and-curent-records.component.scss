@@ -1,0 +1,22 @@
+@mixin size-container {
+    height: 400px;
+    width: 400px;
+}
+
+.container-duty {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+
+    .container-duty_duty {
+        @include size-container;
+    }
+
+    .container-duty_records {
+        @include size-container;
+    }
+}

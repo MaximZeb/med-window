@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventBusService {
-  public patient$$: Subject<any> = new Subject();
+  public patient$$: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor() { }
 }

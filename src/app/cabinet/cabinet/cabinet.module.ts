@@ -7,13 +7,16 @@ import { MatIconModule } from "@angular/material/icon";
 import { YandexMapComponent } from '../yandex-map/yandex-map.component';
 import { AppointmentComponent } from '../appointment/appointment.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import {MatTableModule} from "@angular/material/table";
+import { MatTableModule } from "@angular/material/table";
+import { DutyDoctorAndCurentRecordsComponent } from '../duty-doctor-and-curent-records/duty-doctor-and-curent-records.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     CabinetComponent,
     YandexMapComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    DutyDoctorAndCurentRecordsComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import {MatTableModule} from "@angular/material/table";
     MatButtonModule,
     MatIconModule,
     MatStepperModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule
   ]
 })
 export class CabinetModule { }
