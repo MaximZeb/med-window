@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { LoginService } from './login.service';
+import { EventBusService } from '../event-bus/event-bus.service';
+import { ProgressBarService } from '../progress-bar/progress-bar.service';
+import { tap } from 'rxjs/operators';
 
 export interface LoginFormData {
   login: string;
@@ -19,16 +22,19 @@ export class LoginFormComponent {
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private route: Router, private loginService: LoginService) { }
+  constructor(private route: Router, private loginService: LoginService, private progressBarService: ProgressBarService) { }
 
   public enterLogin(): void {
     if (this.loginForm.valid) {
       const loginData: LoginFormData = this.loginForm.value;
 
-      this.loginService.login(loginData).subscribe(v => console.log(v));
-
-      console.log('Login Data:', loginData);
-      this.route.navigate(['cabinet']);
+      this.progressBarService.stateProgreeBar.next(true);
+      this.loginService.login(loginData).pipe(
+        tap(() => this.progressBarService.stateProgreeBar.next(false))
+      ).subscribe(v => {
+        this.route.navigate(['cabinet']);
+        console.log(v)
+      })
     } else {
       console.log('Form is invalid');
     }

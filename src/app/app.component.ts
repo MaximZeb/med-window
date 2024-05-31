@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
+import { ProgressBarService } from './progress-bar/progress-bar.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   templateUrl: './app.component.html',
@@ -7,5 +9,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private route: Router) {this.route.navigate(['login'])}
+  public isTurnProgressBar: BehaviorSubject<boolean> = this.progressBarService.stateProgreeBar;
+
+  constructor(private route: Router, private progressBarService: ProgressBarService) { this.route.navigate(['login']) }
 }

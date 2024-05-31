@@ -7,7 +7,11 @@ import { Router } from "@angular/router";
   styleUrls: ['./cabinet.component.scss']
 })
 export class CabinetComponent {
-  constructor(private route: Router) {}
+  constructor(private route: Router) { this.dutyDoctor(); }
+
+  public dutyDoctor(): void {
+    this.route.navigate(['duty-doctor-records']);
+  }
 
   public logout(): void {
     this.route.navigate(['login']);
