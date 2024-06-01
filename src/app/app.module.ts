@@ -16,12 +16,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { EventBusService } from './event-bus/event-bus.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogContentExampleComponent } from './dialog-content-example/dialog-content-example.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    DialogContentExampleComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { EventBusService } from './event-bus/event-bus.service';
     AppRoutingModule,
     CabinetModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [EventBusService],
   bootstrap: [AppComponent]

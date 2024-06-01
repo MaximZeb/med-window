@@ -1,12 +1,32 @@
-<p>duty-doctor-and-curent-records works!</p>
-<div class="container-duty" *ngIf="records$$ | async">
+<div class="container-duty" *ngIf="patient$$ | async as patient">
     <mat-card class="container-duty_records">
-        <mat-card-header>Теккушие записи</mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
+        <mat-card-header class="records-card-header">Текушие записи</mat-card-header>
+        <mat-card-content class="container-duty_records-content">
+            <div *ngFor="let record of patient.client.records" class="record">
+                <div class="record-name-doctor">{{ record.nameDoctor }}</div>
+                <div class="record-name-lpu">{{ record.nameLPU }}</div>
+                <div class="record-address-lpu">{{ record.addressLPU }}</div>
+                <div class="record-date">{{ record.date | date:'dd.MM.yyyy, HH:mm' }}</div>
+                <div class="record-button">
+                    <button mat-flat-button color="primary" (click)="openDialog(record.coordinat)">Посмотреть на
+                        карте</button>
+                    <button mat-flat-button color="warn">Отменить запись</button>
+                </div>
+            </div>
+        </mat-card-content>
     </mat-card>
 
-    <mat-card class="container-duty_duty">
-        <mat-card-header>Дежрный врач</mat-card-header>
-        <mat-card-content>Дежрный врач</mat-card-content>
-    </mat-card>
+    <!-- <mat-card class="container-duty_duty">
+        <mat-card-header class="records-card-header">Дежурный врач<br>Городская поликлиника №7</mat-card-header>
+        <mat-card-content class="container-duty_records-content">
+            Перед вам: 2 пациента
+        </mat-card-content>
+        <button mat-flat-button color="primary" (click)="recordDutyDoctor()">
+            Записаться к дежурному врачу
+        </button>
+    </mat-card> -->
 </div>
+
+<ng-template #dialogContainer>
+    <app-yandex-map [coordinate]="coordinats"></app-yandex-map>
+</ng-template>

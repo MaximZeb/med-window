@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 
 declare var ymaps: any;
 
@@ -8,6 +8,7 @@ declare var ymaps: any;
   styleUrls: ['./yandex-map.component.scss']
 })
 export class YandexMapComponent implements OnInit, AfterViewInit {
+  @Input() coordinate: number[] = [];
   constructor() { }
 
   public ngOnInit(): void {
@@ -18,9 +19,10 @@ export class YandexMapComponent implements OnInit, AfterViewInit {
   }
 
   private loadMap(): void {
+    console.log(this.coordinate)
     ymaps.ready().then(() => {
       const map = new ymaps.Map('map', {
-        center: [58.0096, 56.2294], // Начальные координаты (Перми)
+        center: this.coordinate.length === 0 ? [58.0096, 56.2294] : this.coordinate, // Начальные координаты (Перми)
         zoom: 10 // Уменьшенное значение зума
       });
 
