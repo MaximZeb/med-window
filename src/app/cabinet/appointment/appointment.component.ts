@@ -3,6 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { EventBusService } from 'src/app/event-bus/event-bus.service';
 import { AppointmentService } from './appointment.service';
+import { ProgressBarService } from 'src/app/progress-bar/progress-bar.service';
+import { switchMap, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface IDoctor {
   nameDoctor: string;
@@ -41,7 +44,13 @@ export class AppointmentComponent implements OnInit {
   public selectedLPU: any = null;
   public selectedDoctors: any = null;
 
-  constructor(private eventBusService: EventBusService, private datePipe: DatePipe, private appointmentService: AppointmentService) {
+  constructor(
+    private eventBusService: EventBusService,
+    private datePipe: DatePipe,
+    private appointmentService: AppointmentService,
+    private progressBarService: ProgressBarService,
+    private router: Router
+  ) {
     this.eventBusService.patient$$.subscribe(v => this.patient = v);
     this.listLPU = this.patient.client.listLPU.map((v: any) => {
       return {
@@ -107,8 +116,6 @@ export class AppointmentComponent implements OnInit {
   }
 
   public createRecord(): void {
-    console.log(this.patient);
-
     const dataRecord = {
       date: this.formatDateTime(this.choseDate as Date, this.choseTime as { hour: number, minute: number }),
       idLpu: this.selectedLPU.id,
@@ -116,6 +123,14 @@ export class AppointmentComponent implements OnInit {
       idPatient: this.patient.client._id
     }
 
-    this.appointmentService.createRecord(dataRecord).subscribe(v => console.log(v));
+    this.progressBarService.stateProgreeBar.next(true);
+
+    this.appointmentService.createRecord(dataRecord).pipe(
+      switchMap(v => this.appointmentService.getRecord()),
+      tap(v => this.eventBusService.patient$$.next(v))
+    ).subscribe(v => {
+      this.progressBarService.stateProgreeBar.next(false);
+      this.router.navigate(['duty-doctor-records'])
+    });
   }
 }
