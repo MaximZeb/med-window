@@ -14,7 +14,7 @@ import { ProgressBarService } from 'src/app/progress-bar/progress-bar.service';
 export class DutyDoctorAndCurentRecordsComponent implements OnInit {
   @ViewChild('dialogContainer') ymap!: TemplateRef<any>;
   public patient$$: BehaviorSubject<any> = this.eventBusService.patient$$;
-  public coordinats: number[] = [];
+  public coordinats: any[] = [];
   public isDutyDoctor: boolean = true;
 
   constructor(private eventBusService: EventBusService, public dialog: MatDialog, private dutyDoctorService: DutyDoctorService, private progressBarService: ProgressBarService) {
@@ -24,9 +24,8 @@ export class DutyDoctorAndCurentRecordsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public openDialog(coordinate: number[]): void {
-    this.coordinats = coordinate;
-    console.log(this.ymap);
+  public openDialog(record: any): void {
+    this.coordinats = [{ coords: record.coordinat, content: record.nameLPU }];
     const dialogRef = this.dialog.open(DialogContentExampleComponent, {
       width: '700px',
       height: '600px',

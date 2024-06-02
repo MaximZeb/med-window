@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
+import { take } from 'rxjs';
+import { ApiBackendService } from 'src/app/api/api-backend.service';
 
 @Component({
   selector: 'app-cabinet',
@@ -7,13 +9,15 @@ import { Router } from "@angular/router";
   styleUrls: ['./cabinet.component.scss']
 })
 export class CabinetComponent {
-  constructor(private route: Router) { this.dutyDoctor(); }
+  constructor(private route: Router, private apiBackendService: ApiBackendService) { this.dutyDoctor(); }
 
   public dutyDoctor(): void {
     this.route.navigate(['duty-doctor-records']);
   }
 
   public logout(): void {
-    this.route.navigate(['login']);
+    this.apiBackendService.get('https://xxline.life/logout').pipe(take(1)).subscribe();
+
+    setTimeout(() => this.route.navigate(['login']), 500);
   }
 }

@@ -5,11 +5,12 @@
             <div *ngIf="patient.client.records.length === 0" class="empaty-list">Нет записей</div>
             <div *ngFor="let record of patient.client.records" class="record">
                 <div class="record-name-doctor">{{ record.nameDoctor }}</div>
+                <div class="record-name-lpu">{{ record.specialization }}</div>
                 <div class="record-name-lpu">{{ record.nameLPU }}</div>
                 <div class="record-address-lpu">{{ record.addressLPU }}</div>
                 <div class="record-date">{{ record.date | date:'dd.MM.yyyy, HH:mm' }}</div>
                 <div class="record-button">
-                    <button mat-flat-button color="primary" (click)="openDialog(record.coordinat)">Посмотреть на
+                    <button mat-flat-button color="primary" (click)="openDialog(record)">Посмотреть на
                         карте</button>
                     <button mat-flat-button color="warn" (click)="deleteRecord(record)">Отменить запись</button>
                 </div>
@@ -29,5 +30,5 @@
 </div>
 
 <ng-template #dialogContainer>
-    <app-yandex-map [coordinate]="coordinats"></app-yandex-map>
+    <app-yandex-map [coordinats]="coordinats"></app-yandex-map>
 </ng-template>
