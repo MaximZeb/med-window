@@ -33,6 +33,8 @@ export class AppointmentComponent implements OnInit {
   public displayedColumnsDoctor: string[] = ['nameDoctor', 'specialization'];
   public isLinear: boolean = false;
   public doctors: IDoctor[] = [];
+  public editCoordinats: any[] = []
+
   // Selected data for record with Doctor
   public choseDate: Date | null = null;
   public choseTime: { hour: number; minute: number; } | null = null;
@@ -52,9 +54,16 @@ export class AppointmentComponent implements OnInit {
       };
     })
 
+    this.editCoordinats = this.listLPU.map(v => {
+      return {
+        coords: v.coordinat, content: v.nameLPU,
+      }
+    });
 
     console.log(this.listLPU);
+    console.log(this.editCoordinats);
   }
+
 
   ngOnInit(): void {
   }

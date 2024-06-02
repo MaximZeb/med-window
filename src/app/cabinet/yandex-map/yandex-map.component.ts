@@ -9,7 +9,7 @@ declare var ymaps: any;
 })
 export class YandexMapComponent implements OnInit, AfterViewInit {
   @Input() coordinate: number[] = [];
-  @Input() coordinats: number[] = [];
+  @Input() coordinats: { coords: number[]; content: string; }[] = [];
 
   constructor() { }
 
@@ -28,9 +28,11 @@ export class YandexMapComponent implements OnInit, AfterViewInit {
         zoom: 10 // Уменьшенное значение зума
       });
 
-      const points = [
+      console.log(this.coordinats)
+
+      const points = this.coordinats.length === 0 ? [
         { coords: [58.0096, 56.2294], content: 'Пермь' }, // Координаты Перми
-      ];
+      ] : this.coordinats;
 
       const geoObjects = points.map(point => {
         return new ymaps.Placemark(point.coords, {
@@ -50,7 +52,7 @@ export class YandexMapComponent implements OnInit, AfterViewInit {
           zoomMargin: 20
         }).then(() => {
           // Дополнительно вручную задаем зум, если нужно
-          map.setZoom(map.getZoom() - 7, { // Уменьшаем зум на единицу, если необходимо
+          map.setZoom(map.getZoom() - 2, { // Уменьшаем зум на единицу, если необходимо
             checkZoomRange: true
           });
         });

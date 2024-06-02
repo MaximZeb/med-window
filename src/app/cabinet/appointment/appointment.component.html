@@ -21,8 +21,8 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr class="item-list" (click)="selectLPU(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-
-        <app-yandex-map class="ymap"></app-yandex-map>
+        ы
+        <app-yandex-map [coordinats]="editCoordinats" class="ymap"></app-yandex-map>
       </div>
     </mat-step>
     <mat-step label="Выбор врача">
@@ -44,9 +44,11 @@
       </table>
     </mat-step>
     <mat-step label="Выбор даты и время записи">
-      <div>
-        <app-calendare (selectedDate)="selectedDate($event)"></app-calendare>
-        <app-time (choseTime)="setTime($event)"></app-time>
+      <div class="conatainer-main-thri">
+        <div class="container-step-thri">
+          <app-calendare (selectedDate)="selectedDate($event)"></app-calendare>
+          <app-time (choseTime)="setTime($event)"></app-time>
+        </div>
 
         <button mat-flat-button color="accent" [disabled]="!isDisable" (click)="createRecord()">Записаться</button>
       </div>

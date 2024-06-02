@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .time-grid {
   display: flex;
   flex-direction: column;
@@ -15,7 +21,7 @@
 }
 
 .time-slot:hover {
-  background-color: lightgray; /* Изменение фона при наведении */
+  background-color: rgb(120, 209, 250); /* Изменение фона при наведении */
 }
 
 .active {

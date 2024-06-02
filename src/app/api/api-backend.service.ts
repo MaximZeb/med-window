@@ -1,3 +1,4 @@
+import { ɵparseCookieValue } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,7 +10,6 @@ export class ApiBackendService {
   constructor(private http: HttpClient) { }
 
   public post(url: string, date: string): Observable<any> {
-    console.log(url, date)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
