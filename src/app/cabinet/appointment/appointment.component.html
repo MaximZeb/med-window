@@ -44,10 +44,10 @@
     </mat-step>
     <mat-step label="Выбор даты и время записи">
       <div>
-        <app-calendare></app-calendare>
-        <app-time></app-time>
-        <button mat-button matStepperPrevious>Записаться</button>
-        <button mat-button (click)="stepper.reset()">ЗаписатьсяОтменить запись</button>
+        <app-calendare (selectedDate)="selectedDate($event)"></app-calendare>
+        <app-time (choseTime)="setTime($event)"></app-time>
+
+        <button mat-flat-button color="accent" [disabled]="!isDisable" (click)="createRecord()">Записаться</button>
       </div>
     </mat-step>
   </mat-stepper>

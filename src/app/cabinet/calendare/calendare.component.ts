@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 interface CalendarCell {
   date: number | null;
@@ -11,6 +11,7 @@ interface CalendarCell {
   styleUrls: ['./calendare.component.scss']
 })
 export class CalendareComponent implements OnInit {
+  @Output() selectedDate = new EventEmitter<Date>();
   public currentMonth: string;
   public currentYear: number;
   public weekDays: string[] = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
@@ -52,7 +53,8 @@ export class CalendareComponent implements OnInit {
 
   public onDateClick(date: number | null): void {
     if (date) {
-      const selectedDate = new Date(this.currentYear, new Date().getMonth(), date);
+      const selectedDate: Date = new Date(this.currentYear, new Date().getMonth(), date);
+      this.selectedDate.emit(selectedDate);
       console.log('Selected Date:', selectedDate);
     }
   }
