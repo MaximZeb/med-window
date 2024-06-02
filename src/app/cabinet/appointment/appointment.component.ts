@@ -41,7 +41,7 @@ export class AppointmentComponent implements OnInit {
   // Selected data for record with Doctor
   public choseDate: Date | null = null;
   public choseTime: { hour: number; minute: number; } | null = null;
-  public selectedLPU: any = null;
+  public selectedLPU: any = '';
   public selectedDoctors: any = null;
 
   constructor(

@@ -47,7 +47,7 @@
       <div class="conatainer-main-thri">
         <div class="container-step-thri">
           <app-calendare (selectedDate)="selectedDate($event)"></app-calendare>
-          <app-time (choseTime)="setTime($event)"></app-time>
+          <app-time [time]="selectedLPU.openingHours || ''" (choseTime)="setTime($event)"></app-time>
         </div>
 
         <button mat-flat-button color="accent" [disabled]="!isDisable" (click)="createRecord()">Записаться</button>
