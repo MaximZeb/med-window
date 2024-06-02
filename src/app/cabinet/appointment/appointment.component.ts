@@ -4,7 +4,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { EventBusService } from 'src/app/event-bus/event-bus.service';
 import { AppointmentService } from './appointment.service';
 import { ProgressBarService } from 'src/app/progress-bar/progress-bar.service';
-import { switchMap, tap } from 'rxjs';
+import { catchError, of, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 export interface IDoctor {
@@ -37,6 +37,7 @@ export class AppointmentComponent implements OnInit {
   public isLinear: boolean = false;
   public doctors: IDoctor[] = [];
   public editCoordinats: any[] = []
+  public message: string | null = null;
 
   // Selected data for record with Doctor
   public choseDate: Date | null = null;
@@ -128,9 +129,16 @@ export class AppointmentComponent implements OnInit {
     this.appointmentService.createRecord(dataRecord).pipe(
       switchMap(v => this.appointmentService.getRecord()),
       tap(v => this.eventBusService.patient$$.next(v))
-    ).subscribe(v => {
-      this.progressBarService.stateProgreeBar.next(false);
-      this.router.navigate(['duty-doctor-records'])
+    ).subscribe({
+      next: () => {
+        this.progressBarService.stateProgreeBar.next(false);
+        this.router.navigate(['duty-doctor-records'])
+      },
+      error: (error) => {
+        console.log(error);
+        this.progressBarService.stateProgreeBar.next(false);
+        this.message = error.error.message;
+      }
     });
   }
 }

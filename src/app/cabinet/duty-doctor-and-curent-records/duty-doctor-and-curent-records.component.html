@@ -32,3 +32,7 @@
 <ng-template #dialogContainer>
     <app-yandex-map [coordinats]="coordinats"></app-yandex-map>
 </ng-template>
+
+<div class="error" *ngIf="message">
+    <div class="message-error">{{message}}</div>
+</div>

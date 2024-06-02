@@ -16,6 +16,7 @@ export class DutyDoctorAndCurentRecordsComponent implements OnInit {
   public patient$$: BehaviorSubject<any> = this.eventBusService.patient$$;
   public coordinats: any[] = [];
   public isDutyDoctor: boolean = true;
+  public message: string | null = null;
 
   constructor(private eventBusService: EventBusService, public dialog: MatDialog, private dutyDoctorService: DutyDoctorService, private progressBarService: ProgressBarService) {
     this.eventBusService.patient$$.subscribe(v => console.log(v))
@@ -53,7 +54,15 @@ export class DutyDoctorAndCurentRecordsComponent implements OnInit {
     this.dutyDoctorService.deleteRecord(data).pipe(
       switchMap(v => this.dutyDoctorService.getRecord().pipe(
         tap(v => this.eventBusService.patient$$.next(v))
-      )
-      )).subscribe(v => this.progressBarService.stateProgreeBar.next(false));
+      ))
+    ).subscribe({
+      next: () => {
+        this.progressBarService.stateProgreeBar.next(false);
+      },
+      error: (error) => {
+        this.progressBarService.stateProgreeBar.next(false);
+        this.message = error.error.message;
+      }
+    });
   }
 }
