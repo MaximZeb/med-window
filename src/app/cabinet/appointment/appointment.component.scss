@@ -6,6 +6,21 @@
   margin-top: 16px;
 }
 
+.container-step-one {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.ymap {
+    height: 100%;
+    width: 50%;
+}
+
+.mat-elevation-z8 {
+  width: 50%;
+}
+
 .item-list:hover {
-  background-color: aqua;
+  background-color: rgb(189, 190, 190);
 }

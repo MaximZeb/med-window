@@ -2,6 +2,7 @@
     <mat-card class="container-duty_records">
         <mat-card-header class="records-card-header">Текушие записи</mat-card-header>
         <mat-card-content class="container-duty_records-content">
+            <div *ngIf="patient.client.records.length === 0" class="empaty-list">Нет записей</div>
             <div *ngFor="let record of patient.client.records" class="record">
                 <div class="record-name-doctor">{{ record.nameDoctor }}</div>
                 <div class="record-name-lpu">{{ record.nameLPU }}</div>

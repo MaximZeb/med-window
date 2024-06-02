@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,8 +10,12 @@ export class ApiBackendService {
 
   public post(url: string, date: string): Observable<any> {
     console.log(url, date)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
     return this.http.post(url, date, {
-      headers: { 'Content-Type': 'application/json' }
+      headers: headers,
     });
   }
 }
