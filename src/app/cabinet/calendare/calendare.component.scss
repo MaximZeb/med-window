@@ -1,0 +1,37 @@
+.calendar-card {
+  max-width: 400px;
+  margin: auto;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.calendar-cell {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.3s; /* Добавляем плавный переход цвета */
+}
+
+.header {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.weekend {
+  background-color: #ffebee; /* Цвет для выходных дней */
+}
+
+.empty-cell {
+  border: none;
+  cursor: default;
+}
+
+.calendar-cell:hover {
+  background-color: rgb(120, 209, 250); /* Цвет текста при наведении курсора */
+}

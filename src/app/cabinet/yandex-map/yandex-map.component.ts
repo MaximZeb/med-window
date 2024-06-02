@@ -9,6 +9,8 @@ declare var ymaps: any;
 })
 export class YandexMapComponent implements OnInit, AfterViewInit {
   @Input() coordinate: number[] = [];
+  @Input() coordinats: number[] = [];
+
   constructor() { }
 
   public ngOnInit(): void {

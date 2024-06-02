@@ -18,6 +18,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { EventBusService } from './event-bus/event-bus.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogContentExampleComponent } from './dialog-content-example/dialog-content-example.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { DialogContentExampleComponent } from './dialog-content-example/dialog-c
     MatProgressSpinnerModule,
     MatDialogModule
   ],
-  providers: [EventBusService],
+  providers: [DatePipe, EventBusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

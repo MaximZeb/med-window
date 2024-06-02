@@ -10,13 +10,17 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from "@angular/material/table";
 import { DutyDoctorAndCurentRecordsComponent } from '../duty-doctor-and-curent-records/duty-doctor-and-curent-records.component';
 import { MatCardModule } from '@angular/material/card';
+import { CalendareComponent } from '../calendare/calendare.component';
+import { TimeComponent } from '../time/time.component';
 
 @NgModule({
   declarations: [
     CabinetComponent,
     YandexMapComponent,
     AppointmentComponent,
-    DutyDoctorAndCurentRecordsComponent
+    DutyDoctorAndCurentRecordsComponent,
+    CalendareComponent,
+    TimeComponent
   ],
   imports: [
     CommonModule,
