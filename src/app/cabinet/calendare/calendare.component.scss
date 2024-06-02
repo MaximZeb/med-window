@@ -1,3 +1,4 @@
+/* calendare.component.scss */
 .calendar-card {
   max-width: 400px;
   margin: auto;
@@ -32,6 +33,10 @@
   cursor: default;
 }
 
+.selected {
+  background-color: rgb(120, 209, 250); /* Цвет фона выбранного дня */
+}
+
 .calendar-cell:hover {
-  background-color: rgb(120, 209, 250); /* Цвет текста при наведении курсора */
+  background-color: rgb(120, 209, 250); /* Цвет фона при наведении курсора */
 }

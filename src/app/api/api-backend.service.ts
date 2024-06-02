@@ -1,4 +1,3 @@
-import { ɵparseCookieValue } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -16,6 +15,18 @@ export class ApiBackendService {
 
     return this.http.post(url, date, {
       headers: headers,
+      withCredentials: true
+    });
+  }
+
+  public get(url: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get(url, {
+      headers: headers,
+      withCredentials: true
     });
   }
 }

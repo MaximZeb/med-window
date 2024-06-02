@@ -11,7 +11,7 @@
                 <div class="record-button">
                     <button mat-flat-button color="primary" (click)="openDialog(record.coordinat)">Посмотреть на
                         карте</button>
-                    <button mat-flat-button color="warn">Отменить запись</button>
+                    <button mat-flat-button color="warn" (click)="deleteRecord(record)">Отменить запись</button>
                 </div>
             </div>
         </mat-card-content>

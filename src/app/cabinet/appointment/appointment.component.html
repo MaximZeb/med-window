@@ -21,7 +21,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr class="item-list" (click)="selectLPU(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        ы
+
         <app-yandex-map [coordinats]="editCoordinats" class="ymap"></app-yandex-map>
       </div>
     </mat-step>

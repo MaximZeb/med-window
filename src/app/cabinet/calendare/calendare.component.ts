@@ -1,3 +1,4 @@
+// calendare.component.ts
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 interface CalendarCell {
@@ -14,6 +15,7 @@ export class CalendareComponent implements OnInit {
   @Output() selectedDate = new EventEmitter<Date>();
   public currentMonth: string;
   public currentYear: number;
+  public selectedDay: number | null = null; // Добавляем переменную для отслеживания выбранного дня
   public weekDays: string[] = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
   public calendarDays: CalendarCell[] = [];
 
@@ -51,8 +53,13 @@ export class CalendareComponent implements OnInit {
     }
   }
 
+  public isSelected(date: number): boolean {
+    return this.selectedDay !== null && this.selectedDay === date;
+  }
+
   public onDateClick(date: number | null): void {
     if (date) {
+      this.selectedDay = date; // Задаем выбранный день
       const selectedDate: Date = new Date(this.currentYear, new Date().getMonth(), date);
       this.selectedDate.emit(selectedDate);
       console.log('Selected Date:', selectedDate);

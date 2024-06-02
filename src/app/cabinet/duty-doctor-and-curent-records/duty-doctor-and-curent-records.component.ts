@@ -1,8 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { DialogContentExampleComponent } from 'src/app/dialog-content-example/dialog-content-example.component';
 import { EventBusService } from 'src/app/event-bus/event-bus.service';
+import { DutyDoctorService } from './duty-doctor.service';
+import { ProgressBarService } from 'src/app/progress-bar/progress-bar.service';
 
 @Component({
   selector: 'app-duty-doctor-and-curent-records',
@@ -15,7 +17,7 @@ export class DutyDoctorAndCurentRecordsComponent implements OnInit {
   public coordinats: number[] = [];
   public isDutyDoctor: boolean = true;
 
-  constructor(private eventBusService: EventBusService, public dialog: MatDialog) {
+  constructor(private eventBusService: EventBusService, public dialog: MatDialog, private dutyDoctorService: DutyDoctorService, private progressBarService: ProgressBarService) {
     this.eventBusService.patient$$.subscribe(v => console.log(v))
   }
 
@@ -40,5 +42,19 @@ export class DutyDoctorAndCurentRecordsComponent implements OnInit {
 
   public recordDutyDoctor(): void {
     this.isDutyDoctor = !this.isDutyDoctor;
+  }
+
+  public deleteRecord(record: any) {
+    const data = {
+      idPatient: record.patient,
+      idRecord: record._id
+    }
+
+    this.progressBarService.stateProgreeBar.next(true);
+    this.dutyDoctorService.deleteRecord(data).pipe(
+      switchMap(v => this.dutyDoctorService.getRecord().pipe(
+        tap(v => this.eventBusService.patient$$.next(v))
+      )
+      )).subscribe(v => this.progressBarService.stateProgreeBar.next(false));
   }
 }
