@@ -8,17 +8,25 @@
         <mat-form-field class="login-form__field">
           <mat-label class="login-form__label">Логин</mat-label>
           <input matInput class="login-form__input" formControlName="login">
-          <mat-hint class="login-form__hint" *ngIf="loginForm.controls['login'].invalid && loginForm.controls['login'].touched">Логин обязателен</mat-hint>
+          <mat-hint class="login-form__hint"
+            *ngIf="loginForm.controls['login'].invalid && loginForm.controls['login'].touched">Логин
+            обязателен</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="login-form__field">
           <mat-label class="login-form__label">Пароль</mat-label>
           <input matInput class="login-form__input" formControlName="password" type="password">
-          <mat-hint class="login-form__hint" *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">Пароль обязателен</mat-hint>
+          <mat-hint class="login-form__hint"
+            *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">Пароль
+            обязателен</mat-hint>
         </mat-form-field>
 
         <button mat-flat-button type="submit" class="login-form__button" color="primary">Войти</button>
       </form>
     </mat-card-content>
   </mat-card>
+</div>
+
+<div class="error" *ngIf="message">
+  <div class="message-error">{{message}}</div>
 </div>

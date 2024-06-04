@@ -20,6 +20,7 @@ export class LoginFormComponent {
     login: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
+  public message: string | null = null;
 
   constructor(private route: Router, private loginService: LoginService, private progressBarService: ProgressBarService) { }
 
@@ -31,8 +32,14 @@ export class LoginFormComponent {
       this.loginService.login(loginData).pipe(
         tap(() => this.progressBarService.stateProgreeBar.next(false)),
         take(1)
-      ).subscribe(v => {
-        this.route.navigate(['cabinet']);
+      ).subscribe({
+        next: v => {
+          this.route.navigate(['cabinet']);
+        },
+        error: error => {
+          this.progressBarService.stateProgreeBar.next(false);
+          this.message = error.error.message;
+        }
       });
     } else {
       console.log('Form is invalid');

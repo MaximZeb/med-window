@@ -135,7 +135,6 @@ export class AppointmentComponent implements OnInit {
         this.router.navigate(['duty-doctor-records'])
       },
       error: (error) => {
-        console.log(error);
         this.progressBarService.stateProgreeBar.next(false);
         this.message = error.error.message;
       }

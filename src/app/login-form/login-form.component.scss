@@ -52,3 +52,22 @@ mat-card-header, mat-card-title, mat-card-content {
 mat-card-header {
   margin-bottom: 16px;
 }
+
+.error {
+  display: flex;
+  color: white;
+  font-size: larger;
+  position: absolute;
+  height: 100px;
+  width: 400px;
+  opacity: 0.8;
+  background-color: rgb(249 62 62);
+  z-index: 1;
+  bottom: 0px;
+  right: 0px;
+  align-items: center;
+
+  .message-error {
+    margin: 0 20px;
+  }
+}
