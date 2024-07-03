@@ -1,0 +1,117 @@
+::ng-deep .mat-card-header-text {
+  /* CSS styles go here */
+  margin: 0px; // for example to remove the margin
+}
+
+@mixin size-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+    width: 400px;
+    overflow: auto;
+}
+
+.container-duty {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+
+    .container-duty_duty {
+        @include size-container;
+    }
+
+    .container-duty_records {
+        @include size-container;
+    }
+}
+
+.records-card-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.empaty-list {
+  text-align: center;
+  font-size: larger;
+  font-style: italic;
+}
+
+.container-duty_records-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+}
+
+.record {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.record:last-child {
+  border-bottom: none;
+}
+
+.record div {
+  margin-bottom: 5px;
+}
+
+.record div:last-child {
+  margin-bottom: 0;
+}
+
+.record-name-doctor {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.record-name-lpu,
+.record-address-lpu,
+.record-date {
+  font-size: 1em;
+  color: #555;
+}
+
+.record-date {
+  background-color: rgba(78, 247, 106, 0.267) ;
+  width: fit-content;
+  font-style: italic;
+  color: #888;
+}
+
+.record-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.error {
+  display: flex;
+  color: white;
+  font-size: larger;
+  position: absolute;
+  height: 100px;
+  width: 400px;
+  opacity: 0.8;
+  background-color: rgb(249 62 62);
+  z-index: 1;
+  bottom: 0px;
+  right: 0px;
+  align-items: center;
+
+  .message-error {
+    margin: 0 20px;
+  }
+}

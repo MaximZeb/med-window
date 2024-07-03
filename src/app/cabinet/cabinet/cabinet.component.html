@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="panel-left">
+    <button mat-icon-button color="primary" routerLink="duty-doctor-records"
+      aria-label="Example icon button with a home icon">
+      <mat-icon class="large-icon">home</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" routerLink="record" aria-label="Example icon button with a home icon">
+      <mat-icon class="large-icon">calendar_month</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)='logout()' aria-label="Example icon button with a home icon"
+      class="logout-button">
+      <mat-icon class="large-icon">logout</mat-icon>
+    </button>
+  </div>
+
+  <div class="panel-right">
+    <router-outlet></router-outlet>
+  </div>
+</div>
